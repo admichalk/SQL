@@ -11,7 +11,7 @@ In this project I answer 18 questions using MySQL by querying a historical datas
 - Grouping data
 - Ordering data
 - Limiting the output data
-- Simple record joining (inner joins)
+- Record joining (joins)
 - Aliasing columns or tables
 - Matching and extracting patterns
 - Dealing with the if/then/else logic in SQL

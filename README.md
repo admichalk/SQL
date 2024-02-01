@@ -1,6 +1,7 @@
 # SQL 
 
 ## 1. Querying 120 Years of Olympic History 
+In this project I answer 18 questions using MySQL by querying a historical dataset based on past Olympic Games. The dataset can be found [here](https://www.kaggle.com/datasets/heesoo37/120-years-of-olympic-history-athletes-and-results).
 ### Skills used:
 - Performing mathematical operations
 - Aggregating and describing data (minimum, maximum, average, count, and sum)

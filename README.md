@@ -19,7 +19,8 @@ In this project I answer 18 questions using MySQL by querying a historical datas
 - Using common table expressions - temp set, only exists within scope of the statement (acts like a subquery)
 - Applying SQL window functions
 ## 2. Data Science Coding Questions From Real Interviews at Top Tier Companies
-  (Companies include Twitter, Uber, Amazon, Airbnb, Apple, Bloomberg, Chase, Dell, Forbes etc.)
+This project is a cumulation of 45 SQL questions asked by top tier companies during real interviews. Companies include Twitter, Uber, Amazon, Airbnb, Apple, Bloomberg, Chase, Dell, Forbes, and many more. Tables and questions where created by StrataScratch. Each query written uses different tables. 
+
 > **To see my queries click on ‘2. Data Science Coding Questions From Real Interviews at Top Tier Companies.sql’**
   
 ### Skills used:

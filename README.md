@@ -20,6 +20,8 @@ In this project I answer 18 questions using MySQL by querying a historical datas
 - Applying SQL window functions
 ## 2. Data Science Coding Questions From Real Interviews at Top Tier Companies
   (Companies include Twitter, Uber, Amazon, Airbnb, Apple, Bloomberg, Chase, Dell, Forbes etc.)
+> **To see my queries click on ‘2. Data Science Coding Questions From Real Interviews at Top Tier Companies.sql’**
+  
 ### Skills used:
 - Recursive CTEs
 - Handling NULL’s (e.g. with COALESCE)

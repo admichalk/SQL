@@ -2,12 +2,15 @@ USE mydb;
 SELECT *
 FROM athlete_events
 LIMIT 50;
+
 -- How many olympics games have been held?
+
 SELECT COUNT(DISTINCT Games) AS total_olympic_games
 FROM athlete_events
-WHERE Games LIKE '%Summer' OR Games LIKE '%Winter'; -- 51 games
+WHERE Games LIKE '%Summer' OR Games LIKE '%Winter'; 
 
 -- List all Olympics games held so far.
+
 SELECT DISTINCT Games
 FROM athlete_events
 WHERE Games LIKE '%Summer' OR Games LIKE '%Winter'
@@ -15,6 +18,7 @@ ORDER BY Games DESC
 LIMIT 100;
 
 -- Find the total number of nations who participated in each olympics.
+
 SELECT DISTINCT Games, COUNT(DISTINCT region)
 FROM athlete_events JOIN noc_regions USING (NOC)
 WHERE Games LIKE '%Summer' OR Games LIKE '%Winter'
@@ -22,13 +26,15 @@ GROUP BY Games
 ORDER BY Games
 LIMIT 100;
 
--- Which year saw the highest and lowest number of countries participating in the olympics? *check the answer*
+-- Which year saw the highest and lowest number of countries participating in the olympics?
+
 SELECT DISTINCT Games, COUNT(DISTINCT region)
 FROM athlete_events JOIN noc_regions USING (NOC)
 WHERE Games LIKE '%Summer' OR Games LIKE '%Winter'
 GROUP BY Games
 ORDER BY Games DESC
 LIMIT 1; 
+
 SELECT DISTINCT Games, COUNT(DISTINCT region)
 FROM athlete_events JOIN noc_regions USING (NOC)
 WHERE Games LIKE '%Summer' OR Games LIKE '%Winter'
@@ -45,6 +51,7 @@ FROM athlete_events
 LIMIT 10;
 
 -- Find the top 5 athletes who have won the most gold medals.
+
 SELECT DISTINCT ID, Name, COUNT(Medal) as cnt
 FROM athlete_events
 WHERE Medal = 'Gold'
@@ -53,6 +60,7 @@ ORDER BY cnt DESC
 LIMIT 6;
 
 -- Find the top 5 athletes who have won the most medals (gold/silver/bronze).
+
 WITH tbl AS (
 SELECT DISTINCT ID, Name, COUNT(Medal) AS cnt
 FROM athlete_events
@@ -61,9 +69,6 @@ GROUP BY ID, Name
 ORDER BY cnt DESC)
 SELECT *, RANK() OVER(ORDER BY cnt DESC) AS most_medals_rank
 FROM tbl
-
-
-
 
 -- Find the top 5 most successful countries in olympics. (Success is defined by the number of medals won)
 
@@ -85,6 +90,7 @@ GROUP BY region
 ORDER BY gold_medals DESC;
 
 -- Find the total gold, silver and bronze medals won by each country corresponding to each olympic games.
+
 SELECT DISTINCT Games, region, COUNT(IF(Medal = 'Gold', 1, NULL)) AS gold_medals, 
 COUNT(IF(Medal ='Silver', 1, NULL)) AS silver_medals, 
 COUNT(IF(Medal ='Bronze', 1, NULL)) AS bronze_medals
@@ -95,6 +101,7 @@ ORDER BY Games, Region
 LIMIT 200;
 
 -- In which sport has India has won the most medals.
+
 SELECT DISTINCT Sport, COUNT(Medal) as cnt
 FROM athlete_events JOIN noc_regions USING (NOC)
 WHERE region = 'India' AND Medal IN ('gold', 'bronze', 'silver')
@@ -102,8 +109,8 @@ GROUP BY Sport
 ORDER BY cnt DESC
 LIMIT 1;
 
-
 -- Break down all olympic games where india won medal for Hockey and how many medals in each olympic games.
+
 SELECT Games, COUNT(IF(Medal IN ('gold', 'silver', 'bronze'), 1, NULL)) as cnt
 FROM athlete_events JOIN noc_regions USING (NOC)
 WHERE region = 'India' AND Sport = 'Hockey'
@@ -129,11 +136,11 @@ ORDER BY sports_cnt DESC
 LIMIT 100;
 
 -- Identify the sport which was played in all summer olympics.
+
 SELECT COUNT(DISTINCT games)
 FROM athlete_events
 WHERE Games LIKE '%Summer'
 LIMIT 100; -- 29 summer olympics total
-
 
 SELECT sport, COUNT(1) as cnt
 FROM(
@@ -159,6 +166,7 @@ GROUP BY sport
 HAVING COUNT(1) = 1;
 
 -- Which nation has participated in all of the olympic games? 
+
 SELECT COUNT(DISTINCT Games)
 FROM (SELECT DISTINCT games, region
 FROM athlete_events JOIN noc_regions USING (NOC)
@@ -177,6 +185,7 @@ HAVING COUNT(1) = 51;
 
 
 -- Which countries have never won a gold medal but have won silver or bronze medals?
+
 SELECT region, medal
 FROM athlete_events JOIN noc_regions USING (NOC)
 WHERE Medal = 'Gold'
